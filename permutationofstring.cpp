@@ -1,34 +1,22 @@
-#include<iostream>
+#include<iostream>//refer the video
 using namespace std;
-char full_string[100];
 void swap(char &a,char &b){
 	char temp=a;
 	a=b;
 	b=temp;
 }
-void permute(char *str,int length){
-	if(length==0)
-	  cout<<full_string<<endl;
-    else{
-    	for(int i=0;i<length;i++){
-    	
-    	swap(str[0],str[i]);
-    	permute(str+1,length-1);
-    	swap(str[i],str[0]);
-    	
-    	
-    }
-    }
+void permute(char str[],int k,int n){
+	if(k==n)
+	   cout<<str<<endl;
+   else{
+   	     for(int i=k;i<=n;i++){
+   	     	swap(str[k],str[i]);
+   	     	permute(str,k+1,n);
+   	     	swap(str[k],str[i]);
+   	     }
+   }
 }
-
 int main(){
-	
-	cin>>full_string;
-	permute(full_string,3);
-	
-	
-	
-	
-	
-	
+	char str[]="abc";
+	permute(str,0,2);
 }

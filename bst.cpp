@@ -1,10 +1,14 @@
 #include<iostream>
+#include<queue>
+#include<map>
+#include<climits>
 using namespace std;
 struct node{
 	int data;
 	struct node* left;
 	struct node* right;
 };
+
 
 struct node* newNode(int data){
 	struct node* node=new(struct node);
@@ -14,6 +18,54 @@ struct node* newNode(int data){
 	
 }
 
+void verticalSum(node* node,map<int,int>& m,int col){
+	if(node==NULL)
+	   return;
+     map<int,int>::iterator it=m.find(col);
+     //finds the position of (key,value) pair or the end pointer if no such pair is found
+     if(it==m.end())
+         m.insert(pair<int,int>(col,node->data));
+      else
+         it->second+=node->data;
+     verticalSum(node->left,m,col-1);
+     verticalSum(node->right,m,col+1);
+}
+bool isBST(node* node,int low,int high){
+	if(node==NULL)
+	    return true;
+     if(low<node->data&&node->data<high){
+     	return( isBST(node->left,low,node->data)&&isBST(node->right,node->data,high));
+    	
+     }
+     else
+       return false;
+}
+int maxDepth(struct node* node){
+	if(node==NULL)
+	  return 0;
+   else
+   
+     return max(maxDepth(node->left),maxDepth(node->right))+1;
+     
+	
+	
+}
+
+int minDepth(struct node* node){
+	if(node==NULL)
+	   return 0;
+    else
+    return min(minDepth(node->left),minDepth(node->right))+1;
+     
+}
+
+bool isBalanced(struct node* node){
+ 	if(maxDepth(node)-minDepth(node)<=1)
+ 	  return true;
+    else
+     return false;
+     
+}   
 
 bool hasPathSum(struct node *node,int sum){
 	if(node==NULL)
@@ -80,9 +132,12 @@ void postOrder(struct node* node){
 }
 int size(struct node* node){
 	static int count=0;
-	if(node==NULL)
-	   return count;
+	if(node==NULL){
+		return count;
+	}
+	   
     else return size(node->left)+size(node->right)+1;
+    
 }
 int max(int a,int b){
 	if(a>=b)
@@ -91,19 +146,11 @@ int max(int a,int b){
 	   return b;
 }
 
-int maxDepth(struct node* node){//doubt
-	int ldepth,rdepth;
-	if(node==NULL)
-	  return 0;
-   else {
-   	ldepth=maxDepth(node->left);
-   	rdepth=maxDepth(node->right);
-   	if(ldepth>rdepth)
-   	  return ldepth+1;
-    else
-      return rdepth+1;
-   }
-   
+int min(int a,int b){
+	if(a<=b)
+	   return a;
+	   else
+	   return b;
 }
 
 void printTree( node *tp, int spaces )
@@ -155,6 +202,28 @@ void printPath(struct node* node){
 	printRecursivePath(node,path,0);
 }
 
+//this code is to print path upto length N
+void printRecursivePathuptoN(struct node* node,int path[],int len,int N){
+	if(node==NULL)
+	    return;
+    
+    	path[len++]=node->data;
+    	if(node->left==NULL&&node->right==NULL||len==N){
+    	 
+    	    printPathArray(path,len);
+    	}
+	    else{
+	    //otherwise recursively traverse both subtree
+    	printRecursivePathuptoN(node->left,path,len,N);
+    	printRecursivePathuptoN(node->right,path,len,N);
+    	
+    }
+}
+void printPathuptoN(struct node* node,int N){
+	int path[100];
+	printRecursivePathuptoN(node,path,0,N);
+}
+
 
 void swap(struct node* &a,struct node* &b){
 	struct node* temp=a;
@@ -172,6 +241,47 @@ void mirror(struct node* node){
    }
 		
 }
+struct node* convertArrayToBinaryTree(int arr[],int start,int end){
+	if(end<start)
+		return NULL;
+		int mid=(start+end)/2;
+		node* node=newNode(arr[mid]);
+		node->left=convertArrayToBinaryTree(arr,start,mid-1);
+		node->right=convertArrayToBinaryTree(arr,mid+1,end);
+		return node;
+
+}
+int getLevelOfNode(struct node* node,int datainnode,int level){
+	   if(node==NULL)
+	      return 0;
+	      else{
+	      if(node->data==datainnode)
+	        return level;
+          else
+		    return (getLevelOfNode(node->left,datainnode,level+1))|(getLevelOfNode(node->right,datainnode,level+1));      
+       
+           
+   		}
+	
+}
+
+void levelOrder(struct node* root){
+
+ queue<node*>q;
+ struct node* node;
+ if(root!=NULL)
+     q.push(root);
+	 while(!q.empty()){
+	 	node=q.front();
+	 	cout<<node->data<<' ';
+	 	q.pop();
+	 	if(node->left!=NULL)
+	 	q.push(node->left);
+	 	if(node->right!=NULL)
+	 	q.push(node->right);
+	 }	
+}
+
 
 int main(){
 	struct node* root=NULL;
@@ -193,12 +303,37 @@ int main(){
 	mirror(root);
 	cout<<endl;
 	printTree(root,0);
+	map<int,int> m;
+	map<int,int>::iterator iter;
+	cout<<"\nvertical sum ";
+	verticalSum(root,m,0);
+	for(iter=m.begin();iter!=m.end();iter++){
+		cout<<iter->second<<" ";
+	}
 	cout<<"\nsize is "<<size(root);
+	cout<<"\nis BST? "<<isBST(root,INT_MIN,INT_MAX);
 	cout<<"\nmaxdepth is "<<maxDepth(root);
 	cout<<"\nminimum value is "<<minValue(root);
 	cout<<"\nhasPathSum 45 ? "<<hasPathSum(root,45);
 	cout<<"\nhasPathSum 9 ? "<<hasPathSum(root,9);
 	cout<<"\nAll paths of the tree\n";
+///	root=insert(root,89);
+//	root=insert(root,10);
+	printTree(root,0);
 	printPath(root);
+	cout<<"\nAll paths of the tree upto N=2";
+
+	printTree(root,0);
+	printPathuptoN(root,2);
+	
+   	
+	cout<<"\nisBalanced? "<<isBalanced(root) ;
+	int arr[]={5,4,3,2,1};
+	node* arrTree=convertArrayToBinaryTree(arr,0,4);
+	cout<<"\narrayTree\n\n";
+	printTree(arrTree,0);
+	cout<<"\n\nlevel of 4 in array tree is "<<getLevelOfNode(arrTree,4,0);
+	cout<<"\nlevel order traversal of array tree is ";
+	levelOrder(arrTree); 
 }
 
