@@ -30,6 +30,25 @@ else{
 }
      
 }
+node* add2Nodes(node* n1,node* n2,int carry){
+	if(n1==	NULL&&n2==NULL&&carry==0){
+		
+		    
+		return NULL;
+	}
+	node* result=newNode(carry);
+	int sum=carry;
+	if(n1)
+	   sum+=n1->data;
+    if(n2)
+       sum+=n2->data;
+    result->data=sum%10;//strip to single digit
+    if(n1!=NULL&&n2!=NULL)
+    result->next=add2Nodes(n1->next,n2->next,sum/10);//sum/10==1 if carry exists
+    //make a chain of nodes and return the head
+    
+    return result;
+}
 void reverse(node *&head){
 	node* current=head;
 	node* prev=NULL;
@@ -87,14 +106,27 @@ void display(node *head){
 
 int main(){
 	node* head=NULL;
-	for(int i=0;i<6;i++)
-	   head=insertAtEnd(head,i);
+	node* head1=NULL;
+	node* result;
+	
+	   head=insertAtEnd(head,3);
+	   head=insertAtEnd(head,1);
+	   head=insertAtEnd(head,5);
+	   
+
+	   head1=insertAtEnd(head1,9);
+	   head1=insertAtEnd(head1,9);
+	   head1=insertAtEnd(head1,9);
     display(head);
     reverse(head);
     
     display(head);
     reverseRecursive(head);
     display(head);
+    cout<<"\n\nAdd 2 lists ";
+    result=add2Nodes(head,head1,0);
+    display(result);
+    
     //swapOddandEvenandLeaveLastNode(head);
     
     

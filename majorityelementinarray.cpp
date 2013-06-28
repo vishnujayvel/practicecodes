@@ -32,7 +32,7 @@ void findMajority(int arr[],int size){
 
 int main(){
 	//int arr[]={1,3,2,2,4,2,1,3,3,2,2,2,1,2,2};
-	int arr[]={1,2,3,4,1,2,1,2,3,3,3,1,1};
+	int arr[]={1,2,3,4,1,2,3,2,1,3,1,3,1};
 	int size=sizeof(arr)/sizeof(int);
 	cout<<"size of the array is "<<size;
 	findMajority(arr,size);

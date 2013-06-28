@@ -2,6 +2,7 @@
 #include<queue>
 #include<map>
 #include<climits>
+#include<stack>
 using namespace std;
 struct node{
 	int data;
@@ -9,7 +10,20 @@ struct node{
 	struct node* right;
 };
 
-
+int kthMaximumNode(node* node,int k){//not working
+	if(node){
+	
+	static int count=0;
+	
+		kthMaximumNode(node->right,k);
+		count++;
+		if(count==k)
+		   return node->data;
+        
+        kthMaximumNode(node->left,k);
+    }
+	
+}
 struct node* newNode(int data){
 	struct node* node=new(struct node);
 	node->data=data;
@@ -17,7 +31,59 @@ struct node* newNode(int data){
 	return node;
 	
 }
+void nonRecursiveInorderTraversal(node *root){
+	stack<node*> s;
+	cout<<endl;
+	while(1){
+	
+	while(root){
+		s.push(root);
+		root=root->left;
+	}
+	if(s.empty())
+	   break;
+	   root=s.top();
+	   s.pop();
+	   cout<<root->data<<" ";
+	   root=root->right;
+	  
+   }
+} 
 
+//to correct a BST in which 2 nodes are swapped
+/*void correctBST(struct node* root){
+	static struct node* temp1=NULL,temp2=NULL,prev=NULL;
+	static bool found=0;
+	if(found)
+	    return;
+	if(root){
+		correctBST(root->left);
+		if(!prev)
+		     prev=root->left;
+        if(!temp1&&prev&&root->data<prev->data)
+             temp1=prev;
+        else if(!temp2&&prev&&root->data<prev->data)
+             temp2=root;
+        if(temp1&&temp2&&!found){
+        	swap(&temp1,&temp2);
+        	found=1;
+        	return;
+        	
+        }
+        prev=root;
+        correctBST(root->right);
+        
+	}
+}
+*/
+int getLeafCount(node* node){
+	if(node==NULL)
+	   return 0;
+    if(node->left==NULL&&node->right==NULL)
+       return 1;
+     else
+       return getLeafCount(node->left)+getLeafCount(node->right);
+}
 void verticalSum(node* node,map<int,int>& m,int col){
 	if(node==NULL)
 	   return;
@@ -130,6 +196,22 @@ void postOrder(struct node* node){
      postOrder(node->right);
      cout<<node->data<<' ';
 }
+void getPostOrderPredecessor(node* node,int i){
+	static int prev=-1;
+	if(node==NULL)
+	   return ;
+    
+	   getPostOrderPredecessor(node->left,i);
+	   getPostOrderPredecessor(node->right,i);
+	   if(node->data==i)
+	       cout<<prev;
+       else
+           {
+           	prev=node->data;
+           }
+          
+	   
+}
 int size(struct node* node){
 	static int count=0;
 	if(node==NULL){
@@ -224,7 +306,21 @@ void printPathuptoN(struct node* node,int N){
 	printRecursivePathuptoN(node,path,0,N);
 }
 
-
+void printNodeAtKDistanceFromRoot(node* node,int k){
+	if(node==NULL)
+	   return;
+     if(k==0){
+     
+        cout<<node->data<<" ";
+        return;
+    }
+     else{
+     
+        printNodeAtKDistanceFromRoot(node->left,k-1);
+        printNodeAtKDistanceFromRoot(node->right,k-1);
+    }
+        
+}
 void swap(struct node* &a,struct node* &b){
 	struct node* temp=a;
     a=b;
@@ -299,10 +395,18 @@ int main(){
 	cout<<"postorder ";
 	postOrder(root);
 	cout<<endl;
+	cout<<"postorder predecessor of 4 is ";
+	getPostOrderPredecessor(root,4);
 	printTree(root,0);
 	mirror(root);
 	cout<<endl;
 	printTree(root,0);
+	cout<<endl<<"leaf count is"<<getLeafCount(root)<<endl;
+	printTree(root,0);
+	mirror(root);//mirror again to undo the intial mirror
+	cout<<"Inorder traversal";
+	nonRecursiveInorderTraversal(root);
+	cout<<endl;
 	map<int,int> m;
 	map<int,int>::iterator iter;
 	cout<<"\nvertical sum ";
@@ -311,6 +415,8 @@ int main(){
 		cout<<iter->second<<" ";
 	}
 	cout<<"\nsize is "<<size(root);
+	int k1=3;
+	cout<<"\nKth maximum node where k = "<<k1<<" is "<<kthMaximumNode(root,k1);
 	cout<<"\nis BST? "<<isBST(root,INT_MIN,INT_MAX);
 	cout<<"\nmaxdepth is "<<maxDepth(root);
 	cout<<"\nminimum value is "<<minValue(root);
@@ -320,12 +426,17 @@ int main(){
 ///	root=insert(root,89);
 //	root=insert(root,10);
 	printTree(root,0);
+	
 	printPath(root);
 	cout<<"\nAll paths of the tree upto N=2";
 
 	printTree(root,0);
 	printPathuptoN(root,2);
 	
+	
+	int k=2;
+	cout<<"\n\n\nPrinting nodes at distance "<<k<<" from root";
+	printNodeAtKDistanceFromRoot(root,k);
    	
 	cout<<"\nisBalanced? "<<isBalanced(root) ;
 	int arr[]={5,4,3,2,1};
