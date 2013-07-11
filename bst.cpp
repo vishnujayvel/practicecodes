@@ -24,6 +24,17 @@ int kthMaximumNode(node* node,int k){//not working
     }
 	
 }
+bool printAncestors(node* node,int data){
+	if(node==NULL)
+	   return 0;
+	   if(node->left->data==data||node->right->data==data||printAncestors(node->left,data)||printAncestors(node->right,data))
+         {
+         cout<<node->data<<" ";
+         return 1;
+     }
+     return 0;
+      
+}
 struct node* newNode(int data){
 	struct node* node=new(struct node);
 	node->data=data;
@@ -398,6 +409,8 @@ int main(){
 	cout<<"postorder predecessor of 4 is ";
 	getPostOrderPredecessor(root,4);
 	printTree(root,0);
+	cout<<"ancestors of 3 are ";
+	printAncestors(root,3);
 	mirror(root);
 	cout<<endl;
 	printTree(root,0);
