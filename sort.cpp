@@ -44,6 +44,7 @@ void selectionSort(int arr[],int size){
 		
 	}
 }
+//simple
 int main(){
 	int arr[]={1,44,33,22,1,55};
 	//bubbleSort(arr,6);
