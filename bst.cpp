@@ -9,7 +9,69 @@ struct node{
 	struct node* left;
 	struct node* right;
 };
+int max(int a,int b){
+	if(a>=b)
+	  return a;
+	  else
+	   return b;
+}
 
+int min(int a,int b){
+	if(a<=b)
+	   return a;
+	   else
+	   return b;
+}
+
+/*
+ * The main idea of the solution is — While traversing Binary Search Tree
+ *  from top to bottom, the first node n we encounter with value between 
+ * n1 and n2, i.e., n1 < n < n2 is the Lowest or Least Common Ancestor(LCA)
+ *  of n1 and n2 (where n1 < n2). So just traverse the BST in pre-order, 
+ * if you find a node with value in between n1 and n2 then n is the LCA, 
+ * if it's value is greater than both n1 and n2 then our LCA lies on left side of the node, if 
+ * it's value is smaller than both n1 and n2 then LCA lies on right side.
+ *  */
+int leastCommonAncestor(node* root,int n1, int n2){
+	if(root==NULL||root->data==n1||root->data==n2)
+	  return -1;
+	if((root->right!=NULL)&&(root->right->data==n1||root->right->data==n2))
+	 return root->data;
+    if((root->left!=NULL)&&(root->left->data==n1||root->left->data==n2))
+      return root->data;
+    if(root->data>n1&&root->data<n2)
+      return root->data;
+    if(root->data>n1&&root->data>n2)
+       return leastCommonAncestor(root->left,n1,n2);
+    if(root->data<n1&&root->data<n2)
+       return leastCommonAncestor(root->right,n1,n2);
+  }
+      
+
+int getMaxCompleteLevel(node* node){
+	if(node==NULL||!(node->left)||!(node->right))
+	   return 0;
+	int l=getMaxCompleteLevel(node->left);
+	int r=getMaxCompleteLevel(node->right);
+	return 1+min(l,r);	
+}
+bool isPresent(node* node,int n){
+	if(node==NULL)
+	   return false;
+	if(node->data==n)
+	   return true;
+	return isPresent(node->left,n)||isPresent(node->right,n);
+}
+
+bool isBothNodesinSamePathFromRoot(node* node,int n1,int n2){
+	if(node==NULL)
+	   return false;
+	if(node->data==n1)
+	   return isPresent(node,n2);
+	if(node->data==n2)
+	   return isPresent(node,n1);
+	return isBothNodesinSamePathFromRoot(node->left,n1,n2)||isBothNodesinSamePathFromRoot(node->right,n1,n2);
+}
 int kthMaximumNode(node* node,int k){//not working
 	if(node){
 	
@@ -42,6 +104,20 @@ struct node* newNode(int data){
 	return node;
 	
 }
+
+bool isIdentical(node* n1,node* n2){
+	if(n1==NULL&&n2==NULL)
+	   return true;
+	if(n1==NULL&&n2!=NULL||n2==NULL&&n1!=NULL)
+	   return false;
+	   
+	 else
+	  return isIdentical(n1->left,n2->left)&&isIdentical(n1->right,n2->right);
+	
+	
+	
+}
+
 void nonRecursiveInorderTraversal(node *root){
 	stack<node*> s;
 	cout<<endl;
@@ -231,19 +307,6 @@ int size(struct node* node){
 	   
     else return size(node->left)+size(node->right)+1;
     
-}
-int max(int a,int b){
-	if(a>=b)
-	  return a;
-	  else
-	   return b;
-}
-
-int min(int a,int b){
-	if(a<=b)
-	   return a;
-	   else
-	   return b;
 }
 
 void printTree( node *tp, int spaces )
@@ -454,10 +517,19 @@ int main(){
 	cout<<"\nisBalanced? "<<isBalanced(root) ;
 	int arr[]={5,4,3,2,1};
 	node* arrTree=convertArrayToBinaryTree(arr,0,4);
+	int arr2[]={5,4,3,2,1,0};
+	node* arrTree1=convertArrayToBinaryTree(arr2,0,5);
+	
 	cout<<"\narrayTree\n\n";
 	printTree(arrTree,0);
+	cout<<"\nlca of 3 and 1 is "<<leastCommonAncestor(arrTree1,3,1);
 	cout<<"\n\nlevel of 4 in array tree is "<<getLevelOfNode(arrTree,4,0);
 	cout<<"\nlevel order traversal of array tree is ";
 	levelOrder(arrTree); 
+	cout<<"\nisIdentical ? "<<isIdentical(root,arrTree);
+	cout<<"\n Maximum complete level of the tree "<<getMaxCompleteLevel(arrTree);
+	cout<<"\n is both node 1,3 in same path from root?"<<isBothNodesinSamePathFromRoot(arrTree,1,3);
+	
+	cout<<"\n is both node 5,2 in same path from root?"<<isBothNodesinSamePathFromRoot(arrTree,5,2);
 }
 

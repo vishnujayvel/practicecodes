@@ -102,8 +102,37 @@ void display(node *head){
 	display(node);
 */	
 	
-	
-
+	//program to swap pairs in linklist
+node* swapPairusingPointer(node* head){
+	node* temp=NULL;
+	node* newRoot=NULL;
+	node* n=head;
+	while(n!=NULL&&n->next!=NULL){
+         if(temp!=NULL)
+              temp->next->next=n->next;
+          temp=n->next;
+          n->next=n->next->next;
+          temp->next=n; 
+          if(newRoot==NULL)
+             newRoot=temp;
+           n=n->next;
+		 }
+		 return newRoot;
+	 }
+void swapPairsUsingValue(node *head){
+	if(head==NULL)
+	  return ;
+	node* p=head;
+	node* q=head->next;
+	int temp;
+	while(q){
+		temp=p->data;
+		p->data=q->data;
+		q->data=temp;
+		p=q->next;
+		q=p?p->next:0;
+	}
+}
 int main(){
 	node* head=NULL;
 	node* head1=NULL;
@@ -126,7 +155,11 @@ int main(){
     cout<<"\n\nAdd 2 lists ";
     result=add2Nodes(head,head1,0);
     display(result);
-    
+    head=result;
+    head=swapPairusingPointer(head);
+    display(head);
+    swapPairsUsingValue(head);
+    display(head);
     //swapOddandEvenandLeaveLastNode(head);
     
     
