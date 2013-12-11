@@ -8,16 +8,16 @@
 using namespace std;
 
 int main(){
-	int arr[]={880,982,99,10,55,66,77,78};
+	int arr[]={2,1};
 	int l=0;
 	int h=sizeof(arr)/sizeof(int)-1;
 	int mid;
 	while(arr[l]>arr[h]){
 		mid=l+(h-l)/2;
-	    if(arr[mid]>arr[h]){
+	    if(arr[mid]>arr[h]){//if nor sorted
 	    	l=mid+1;
 	    }
-	    else
+	    else//if sorted
 	       h=mid;
 	}
 	cout<<arr[l];

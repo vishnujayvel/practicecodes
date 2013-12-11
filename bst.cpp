@@ -3,6 +3,7 @@
 #include<map>
 #include<climits>
 #include<stack>
+#include<stdio.h>
 using namespace std;
 struct node{
 	int data;
@@ -25,22 +26,27 @@ int min(int a,int b){
 
 /*
  * The main idea of the solution is — While traversing Binary Search Tree
- *  from top to bottom, the first node n we encounter with value between 
+ * from top to bottom, the first node n we encounter with value between 
  * n1 and n2, i.e., n1 < n < n2 is the Lowest or Least Common Ancestor(LCA)
- *  of n1 and n2 (where n1 < n2). So just traverse the BST in pre-order, 
+ * of n1 and n2 (where n1 < n2). So just traverse the BST in pre-order, 
  * if you find a node with value in between n1 and n2 then n is the LCA, 
  * if it's value is greater than both n1 and n2 then our LCA lies on left side of the node, if 
  * it's value is smaller than both n1 and n2 then LCA lies on right side.
- *  */
+ */
 int leastCommonAncestor(node* root,int n1, int n2){
+	//check the root for ==n1 or n2
 	if(root==NULL||root->data==n1||root->data==n2)
 	  return -1;
+	  //check the root->right for == n1 or n2
 	if((root->right!=NULL)&&(root->right->data==n1||root->right->data==n2))
 	 return root->data;
+	 //check the root->left for == n1 or n2
     if((root->left!=NULL)&&(root->left->data==n1||root->left->data==n2))
       return root->data;
+      //check the  root>n1 and root<n2
     if(root->data>n1&&root->data<n2)
       return root->data;
+      //check the  root>n1 and root<n2
     if(root->data>n1&&root->data>n2)
        return leastCommonAncestor(root->left,n1,n2);
     if(root->data<n1&&root->data<n2)
@@ -48,6 +54,61 @@ int leastCommonAncestor(node* root,int n1, int n2){
   }
       
 
+   
+node* binToList(node* root){
+	
+	if(root==NULL)
+	 return root;
+	if(root->left!=NULL){
+		node* left;
+	    
+		left=binToList(root->left);
+		for(;left->right!=NULL;left=left->right);
+		left->right=root;
+		root->left=left;
+	}
+	if(root->right!=NULL){
+		node* right;
+		right=binToList(root->right);
+		for(;right->left!=NULL;right=right->left);
+		root->right=right;
+		right->left=root;
+	}
+	return root;
+	
+}
+
+node* convertToDLL(node* root){
+	if(root==NULL)
+	     return root;
+	 root=binToList(root);
+	 for(;root->left!=NULL;root=root->left);
+	   return root;
+   }
+void inorderIterative(node* root){//testing coding skills
+	stack<node*> S;
+	
+	node* temp;
+	if(root==NULL)
+	
+	     return;
+	while(1){
+		
+		while(root){
+			S.push(root);
+			root=root->left;
+		}
+		if(S.empty())
+		    break;
+		
+		  temp=S.top();
+		  S.pop();
+		  
+		  printf("%d  ",temp->data);
+		
+		    root=temp->right;
+	}
+}
 int getMaxCompleteLevel(node* node){
 	if(node==NULL||!(node->left)||!(node->right))
 	   return 0;
@@ -117,7 +178,18 @@ bool isIdentical(node* n1,node* n2){
 	
 	
 }
-
+bool isIsomorphic(node* n1,node *n2){
+	if(n1==NULL&&n2==NULL)
+	    return true;
+	if(n1==NULL||n2==NULL)
+	    return false;
+	 if(n1->data==n2->data)
+	    return true;
+	    //case 1:subtrees rooted are not flipped yet First 2 function call takes care of it(it checks for identical trees)
+	    //case 2:subtrees are flipped .2nd set of 2 functions taks care of it
+	 return (isIsomorphic(n1->left,n2->left)&&isIsomorphic(n1->right,n2->right)||isIsomorphic(n1->left,n2->right)
+	 &&isIsomorphic(n1->right,n2->left));
+ }
 void nonRecursiveInorderTraversal(node *root){
 	stack<node*> s;
 	cout<<endl;
@@ -463,7 +535,13 @@ int main(){
 	cout<<"inorder ";
 	inorder(root);
 	cout<<endl;
+	cout<<"iterative inorder";
+	inorderIterative(root);
 	cout<<"preorder ";
+	node* list=convertToDLL(root);
+	for(;list!=NULL;list=list->right)
+	cout<<list->data;
+	
 	preorder(root);
 	cout<<endl;
 	cout<<"postorder ";

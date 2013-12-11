@@ -15,6 +15,32 @@ typedef struct node{
 //simple ll insertion at end
 //not working
 
+node* deleteNode(node* head,int data){
+	if(head==NULL)
+	    return NULL;
+	 
+		  while(head->data==data)
+		     head=head->next;
+		   if(head!=NULL){
+			   node* rider=head->next;
+			   node* prev=head;
+			   while(rider!=NULL){
+			     if(rider->data!=data){
+					prev=rider;
+					rider=rider->next;
+					
+				}
+				else{
+					prev->next=rider->next;
+                    //free(rider);
+                    rider=prev->next;
+				}
+			}
+		}
+			return head;
+		}					
+			        
+		   
 node* insertAtEnd(node *head,int data){
 if(head==NULL)
    return(newNode(data));
@@ -30,6 +56,38 @@ else{
 }
      
 }
+
+node* add2Nodes1(node* n1,node* n2,int carry){
+	int sum;
+	node* result=newNode(0);
+	if(n1==NULL&&n2==NULL&&carry==0)
+	  return NULL;
+	 else if(n1==NULL&&n2==NULL&&carry!=0)
+	  return newNode(carry);
+	if(n1!=NULL&&n2!=NULL){
+		sum=n1->data+n2->data+carry;
+		carry=sum/10;
+		result->data=sum%10;
+		result->next=add2Nodes1(n1->next,n2->next,carry);
+	}
+	else{
+		if(n1!=NULL){
+	   sum=n1->data+carry;
+	   carry=sum/10;
+	   result->data=sum%10;
+	   result->next=add2Nodes1(n1->next,NULL,carry);
+   }
+     else{
+		  sum=n2->data+carry;
+		  carry=sum/10;
+		  result->data=sum%10;
+		  result->next=add2Nodes1(NULL,n2->next,carry);
+	  }
+  }
+   return result;
+}
+	
+	
 node* add2Nodes(node* n1,node* n2,int carry){
 	if(n1==	NULL&&n2==NULL&&carry==0){
 		
@@ -49,19 +107,51 @@ node* add2Nodes(node* n1,node* n2,int carry){
     
     return result;
 }
-void reverse(node *&head){
-	node* current=head;
-	node* prev=NULL;
-	node* next;
-	while(current){
-		next=current->next;
-		current->next=prev;
-		prev=current;
-		current=next;
-	}
-	head=prev;
+
+/*
+void deleteEveryKthNode(node* &head,int k){
+	if(k<=0)
+	   return;
+	if(k==1)
+	    head=NULL;
+	if(
+*/
+void deleteDuplicates(node *&head){
+	node* prev=head;
+	node* curr=head->next;
+	node* rider;
+	while(curr!=NULL){
+		for(rider=head;rider!=curr;rider=rider->next){//checking for duplicate
+			  if(rider->data==curr->data){
+				     node* temp=curr->next;
+				     prev->next=temp;//or prev->next=prev->next->next;  
+				     curr=temp;
+				     break;
+				 }
+			 }
+			      if(rider==curr){//if there is no duplicate
+					 prev=curr;
+					 curr=curr->next;
+		          }	    
+		 }
+	 }
 	
+/*
+
+node* reverseRecursive(node *head){
+	node* result;
+	if(head->next!=NULL){
+	    result=reverseRecursive(head->next);
+		result->next=head;
+		head->next=NULL;
+		return head;
+	}
+	else{
+		return (head);
+	}
 }
+	
+*/	
 void reverseRecursive(node *&head){
 	node* first=head;
 	node* rest;
@@ -137,21 +227,34 @@ int main(){
 	node* head=NULL;
 	node* head1=NULL;
 	node* result;
-	
-	   head=insertAtEnd(head,3);
+	    
 	   head=insertAtEnd(head,1);
-	   head=insertAtEnd(head,5);
+	   head=insertAtEnd(head,2);
+	   head=insertAtEnd(head,3);
 	   
-
-	   head1=insertAtEnd(head1,9);
-	   head1=insertAtEnd(head1,9);
-	   head1=insertAtEnd(head1,9);
+	   head1=insertAtEnd(head1,1);
+	   head1=insertAtEnd(head1,0);
+	   head1=insertAtEnd(head1,2);
+	   head1=insertAtEnd(head1,3);
+	   head1=insertAtEnd(head1,4);
+	   display(head);
+	   cout<<"deleting all 9 ";
+	   head=deleteNode(head,9);
+	   display(head);
+	   cout<<" deleted all 9 :)";
+	   deleteDuplicates(head);
     display(head);
-    reverse(head);
+    
+   // reverse(head);
     
     display(head);
-    reverseRecursive(head);
+    //head=reverseRecursive(head);
+    cout<<"My new TRY";display(head);
+    cout<<"\nList 1";
     display(head);
+    cout<<"\nlist 2";
+    display(head1);
+    
     cout<<"\n\nAdd 2 lists ";
     result=add2Nodes(head,head1,0);
     display(result);
@@ -160,6 +263,7 @@ int main(){
     display(head);
     swapPairsUsingValue(head);
     display(head);
+    
     //swapOddandEvenandLeaveLastNode(head);
     
     

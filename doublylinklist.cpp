@@ -7,7 +7,19 @@ typedef struct node{
 	struct node *prev;
 	
 }node;
-
+node* reverse(node* head){
+	node* current=head;
+	node* temp;
+	while(current!=NULL){
+		temp=current->prev;
+		current->prev=current->next;
+		current->next=temp;
+		current=current->prev;
+		
+	}
+	if(temp!=NULL)
+	return temp->prev;
+}
 node* newNode(int data){
 	node *node=new(struct node);
 	node->next=NULL;
@@ -93,5 +105,7 @@ int main(){
 	head=insert(head,12,2);
 	display(head);
 	head=deleteNode(head,4);
+	display(head);
+	head=reverse(head);
 	display(head);
 }
