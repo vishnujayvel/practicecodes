@@ -1,0 +1,7 @@
+while(i<10)
+{
+printf("%d","hello!!!!!");
+cout<<"ddsdsdsdsd";
+i=45;
+i++;
+}

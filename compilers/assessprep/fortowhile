@@ -1,0 +1,3 @@
+for(;;){
+	printf("This is some text\n");
+}
