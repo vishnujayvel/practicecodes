@@ -1,0 +1,12 @@
+int main()
+{
+int i,p=10;
+if(i==0)
+{
+i++;
+}
+return 0;
+}
+
+~
+

@@ -1,0 +1,8 @@
+switch(a){
+	case 1: call(1);
+		break;
+	case 2: call(2);
+		break;
+	default: call(3);
+		break;
+}

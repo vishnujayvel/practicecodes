@@ -1,0 +1,22 @@
+<?xml version="1.0"?> 
+ <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+ <wml> 
+ <card id="one" > 
+ <p> Current Balance:<input type="text" name="bal"/> </p>
+ <p>
+ Enter amount to be deposited:<input type="text" name="with"/> 
+ </p>
+ <p>
+ <do type="back">
+ 
+ <go href="login.wml"/>
+
+ </do> 
+ </p>
+ <p>
+ <do type="View new balance"> 
+ <go href="updatedbal.wml">
+ </do>
+ </p>
+ </card> 
+ </wml>

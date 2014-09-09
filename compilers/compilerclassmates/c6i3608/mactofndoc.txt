@@ -1,0 +1,6 @@
+#define SUM (a,b) { a+b }
+main()
+{
+  int a,b;
+  printf("%d",SUM(a,b));
+}

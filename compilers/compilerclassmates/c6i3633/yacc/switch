@@ -1,0 +1,13 @@
+switch(b)
+{
+        case 1: ch=1;
+                break;
+        default:ch=0;
+                break;
+
+}
+~
+~
+~
+~
+

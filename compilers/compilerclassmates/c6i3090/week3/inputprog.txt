@@ -1,0 +1,6 @@
+#include<stdio.h>
+int main()
+{
+	int a; /* a is a variable */ 
+	return 1; /* hello */
+}

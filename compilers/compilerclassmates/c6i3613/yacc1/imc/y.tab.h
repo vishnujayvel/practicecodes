@@ -1,0 +1,3 @@
+#define VARIABLE 257
+#define INTEGER 258
+#define OPERATOR 259

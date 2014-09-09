@@ -1,0 +1,12 @@
+#define ID 257
+#define NUM 258
+#define IF 259
+#define ELSE 260
+#define ELSEIF 261
+#define LE 262
+#define GE 263
+#define EQ 264
+#define NE 265
+#define OR 266
+#define AND 267
+#define UMINUS 268

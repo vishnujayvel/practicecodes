@@ -1,0 +1,3 @@
+i=0; //initialise//
+i++; /*increment*/
+i>10 //condition

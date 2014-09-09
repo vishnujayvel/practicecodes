@@ -1,0 +1,33 @@
+%token DEFAULT BREAK SWITCH PRINT PRINTID SP NL SC ALPHA CASE OPBR CLBR OCB CCB COLON DIGIT ID RELOP
+%{
+void yyerror(char *);
+int yylex(void);
+%}
+%%
+program: SWITCH OPBR ID CLBR NEWLINE OCB NEWLINE STATEMENTS CCB {printf(" Correct Syntax"); }
+NEWLINE: NL
+|;
+STATEMENTS: STATEMENTS NEWLINE STATEMENTS 
+| STATEMENT 
+| DEFAULT SP COLON EXPR 
+|;
+STATEMENT: CASE SP ID COLON NEWLINE EXPR BREAK SC 
+|;
+EXPR: EXPR NEWLINE EXPR
+| EXPR RELOP EXPR SC
+| PRINT 
+|ID
+|DIGIT
+|ALPHA
+|;
+%%
+void yyerror(char *s) {
+printf("%s\n",s);
+}
+
+int main()
+{
+yyparse();
+return 1;
+}
+

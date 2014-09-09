@@ -1,0 +1,12 @@
+for(i=0;i<n;i++)
+{
+        for(j=0;j<m;j++)
+        {
+                for(k=5;k>0;k--)
+                {
+                        printf("Hi!");
+                        scanf("%d",&n);
+                }
+        }
+}
+i

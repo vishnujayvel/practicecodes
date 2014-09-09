@@ -1,0 +1,12 @@
+void abc ( int x, char y )
+{
+y++;
+z--;
+}
+void pqr()
+{
+a++;
+b--;
+}
+random text
+random text;

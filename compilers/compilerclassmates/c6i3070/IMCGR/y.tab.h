@@ -1,0 +1,17 @@
+#define ID 257
+#define NUM 258
+#define FOR 259
+#define OB 260
+#define EQ 261
+#define CB 262
+#define DEL 263
+#define LOGIC 264
+#define INCR 265
+#define OPER 266
+#define OSB 267
+#define CSB 268
+#define RELOP 269
+#define OTHER 270
+#define OCB 271
+#define CCB 272
+#define incr 273

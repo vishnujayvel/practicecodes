@@ -1,0 +1,4 @@
+int radius(int r)
+{
+	return r*r;
+}

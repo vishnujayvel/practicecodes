@@ -1,0 +1,30 @@
+%{
+nt tos=-1;
+char op[10];
+%}
+%%
+[a-zA-Z] { printf("%c",yytext[0]);
+                if(t>-1) printf("%c",op[tos--]); }
+[-+*/()] { op[++tos]=yytext[0];}
+[\n\t] {}
+%%
+int main()
+{
+yylex();
+return 0;
+}
+int tos=-1;
+char op[10];
+%}
+%%
+[a-zA-Z] { printf("%c",yytext[0]);
+		if(t>-1) printf("%c",op[tos--]); }
+[-+*/()] { op[++tos]=yytext[0];}
+[\n\t] {}
+%%
+int main()
+{
+yylex();
+return 0;
+}
+

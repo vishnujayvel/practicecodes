@@ -1,0 +1,4 @@
+# define abc ( int x, char y ) y++ z--
+# define pqr()  a++ b--
+random text
+random text;

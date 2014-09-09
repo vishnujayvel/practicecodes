@@ -1,0 +1,21 @@
+
+ <?xml version="1.0"?> 
+ <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+ <wml> 
+ <card id="one" > 
+ <p> Account Number:<input type="text" name="use"/> </p>
+ <p>
+ Pin Number:<input type="password" name="pwd"/> 
+ </p>
+ <p>
+ <do type="login">
+ <go href="page2.wml"/>
+ </do> 
+ </p>
+ <p>
+ <do type="Back">
+ <go href="account.wml"/>
+ </do> 
+ </p>
+ </card> 
+ </wml>

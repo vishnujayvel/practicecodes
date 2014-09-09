@@ -1,0 +1,5 @@
+if ( hello == 50 && hello==25 && hello>50 && hello!=5)
+{
+random commands;
+random commands;
+}

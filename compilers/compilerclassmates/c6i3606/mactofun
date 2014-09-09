@@ -1,0 +1,5 @@
+#define sqr(a) {/
+	printf("Square root:");/
+	a=10*2;/
+	a*a;
+}

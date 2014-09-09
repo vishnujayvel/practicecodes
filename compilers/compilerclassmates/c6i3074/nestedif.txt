@@ -1,0 +1,8 @@
+if(a<b && a<c)
+{
+printf("The smallest is a");
+}
+else
+{
+printf(" do nothing");
+}

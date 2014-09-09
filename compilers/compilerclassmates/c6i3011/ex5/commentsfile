@@ -1,0 +1,7 @@
+// This is a Hello World program
+for(i=0;i<5;i++)
+{
+	printf("Hello World!");	//This is the body
+	/* This line will be printed
+	   for five times */
+}

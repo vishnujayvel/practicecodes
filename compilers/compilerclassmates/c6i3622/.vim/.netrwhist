@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/c6i3622/ex2'
+let g:netrw_dirhist_2='/home/c6i3622/ex5'
+let g:netrw_dirhist_3='/home/c6i3622/yacc/evalpostfix'
+let g:netrw_dirhist_4='/home/c6i3622/yacc/switch'
+let g:netrw_dirhist_5='/home/c6i3622/yacc'
+let g:netrw_dirhist_6='/home/c6i3622'
+let g:netrw_dirhist_7='/home/c6i3622/yacc/switch/..'
+let g:netrw_dirhist_8='/home/c6i3622/yacc/if'

@@ -1,0 +1,35 @@
+%{
+        #include<stdio.h>
+%}
+%token NUM ID
+%left '+''-'
+%left '*''/'
+%left '('')'
+%nonassoc UMINUS
+%%
+exp:    e       {
+                        printf("Input accepted");
+                         return 0;
+                }
+e:       e'+'e
+        |e'-'e
+        |e'*'e
+        |e'/'e
+        |'-' e %prec UMINUS
+        |'(' e ')'
+        |NUM
+        |ID
+        ;
+
+%%
+#include "lex.yy.c"
+int yyerror()
+{
+        return 0;
+}
+int main()
+{
+        printf("\n Enter an expression:");
+        yyparse();
+        return 0;
+}

@@ -1,0 +1,9 @@
+switch(a)
+{
+case 'n':printf("welcome");
+	break;
+case 't':print("Get out");
+	break;
+default:printf("Noting");
+	
+}

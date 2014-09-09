@@ -1,0 +1,12 @@
+#define WHILE 257
+#define OPNPAR 258
+#define CLOSEPAR 259
+#define RELOP 260
+#define OPENBRACE 261
+#define CLOSEBRAC 262
+#define SPL 263
+#define ID 264
+#define DIGIT 265
+#define ADDRESS 266
+#define BOOL 267
+#define EQ 268

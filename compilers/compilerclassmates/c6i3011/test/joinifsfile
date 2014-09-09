@@ -1,0 +1,8 @@
+if(a==b)
+{
+        if(b==c)
+        {
+                printf("Hello");
+        }
+}
+

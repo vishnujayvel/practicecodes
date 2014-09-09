@@ -1,0 +1,9 @@
+switch(ch)
+{
+        case 1: ch=1;
+                break;
+        case 2: ch=2;
+                break;
+        default:ch=0;
+                break;
+}

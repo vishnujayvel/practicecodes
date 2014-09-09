@@ -1,0 +1,14 @@
+switch(id)
+{
+case 'm':
+	printf("m");
+	break;
+case 'a':
+	printf("a");
+	break;
+case 'b':
+ 	printf("b");
+	break;
+default:
+	printf("l");
+}	

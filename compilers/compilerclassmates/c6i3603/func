@@ -1,0 +1,4 @@
+void radius(int r)
+{
+	return r*r;
+}

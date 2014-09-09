@@ -1,0 +1,7 @@
+#include<stdio.h>
+#define num I*I
+main()
+{
+int p;
+p=num;
+}

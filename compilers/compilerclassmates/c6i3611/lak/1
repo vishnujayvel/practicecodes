@@ -1,0 +1,12 @@
+%%
+[a-z] yymore();
+[A-Z] yyless(3);
+[0-9]* printf("\n%d",yyleng);
+\n  printf("%s",yytext);
+. ;
+[ \n\t] ;
+%%
+void main()
+{
+  yylex();
+}

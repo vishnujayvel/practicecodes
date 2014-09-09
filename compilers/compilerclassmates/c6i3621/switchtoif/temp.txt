@@ -1,0 +1,8 @@
+switch(i)
+{
+case 1: asdfasdf;
+	break;
+case 2: sadfsdfs
+	break;
+default: sdfasdfasd;
+}

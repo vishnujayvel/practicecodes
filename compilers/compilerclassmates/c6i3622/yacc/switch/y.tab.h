@@ -1,0 +1,14 @@
+#define ID 257
+#define NUM 258
+#define SWITCH 259
+#define CASE 260
+#define DEFAULT 261
+#define BREAK 262
+#define LE 263
+#define GE 264
+#define EQ 265
+#define NE 266
+#define OR 267
+#define AND 268
+#define ELSE 269
+#define UMINUS 270

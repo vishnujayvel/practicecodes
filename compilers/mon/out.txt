@@ -1,0 +1,7 @@
+MOV AX,a 
+ ADD AX,b
+MOV t1,AX
+MOV AX,b 
+ ADD AX,t1
+MOV t2,AX
+MOV c,AX

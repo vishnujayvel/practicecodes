@@ -1,0 +1,34 @@
+%{
+ char b[100],c,temp[100];
+int i,j;
+%}
+%%
+switch  {
+          
+             printf("if"); 
+            c=input();
+             printf("%c",c);
+               i=0;
+             c=input(); 
+            while(c!=')')
+             {
+             
+                temp[i]=c;
+                i++;
+                 c=input();
+            }}
+(case )   {
+                    while(c!=':')
+                      {
+                        temp[i++]=c;
+                  }
+                for(j=0;j<i;j++)
+                 printf("%c",temp[j]);
+             }      
+} 
+          
+%%
+void main()
+{
+  yylex();
+}

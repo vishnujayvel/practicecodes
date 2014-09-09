@@ -1,0 +1,6 @@
+#!/bin/bash
+yacc -d $2
+lex $1
+gcc y.tab.c lex.yy.c -ll
+rm y.tab.c lex.yy.c y.tab.h
+mv a.out program.o 

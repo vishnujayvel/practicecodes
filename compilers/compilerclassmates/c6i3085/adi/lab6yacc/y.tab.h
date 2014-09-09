@@ -1,0 +1,2 @@
+#define INTEGER 257
+#define VARIABLE 258

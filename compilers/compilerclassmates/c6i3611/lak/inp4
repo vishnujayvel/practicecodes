@@ -1,0 +1,9 @@
+#define sum(a,b) {c=a+b;\
+c=c+5;\
+c=c*5;\
+}\
+
+void main()
+{
+  sum();
+}

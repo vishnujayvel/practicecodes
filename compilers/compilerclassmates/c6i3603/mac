@@ -1,0 +1,1 @@
+#define radius(int r) r*r;

@@ -1,0 +1,16 @@
+#define WHILE 257
+#define OPBR 258
+#define CLBR 259
+#define SPL 260
+#define SC 261
+#define EQ 262
+#define MUL 263
+#define BOOL 264
+#define RELOP 265
+#define INC 266
+#define DEC 267
+#define ID 268
+#define DIGIT 269
+#define OCB 270
+#define CCB 271
+#define SP 272

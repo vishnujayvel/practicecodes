@@ -1,0 +1,7 @@
+
+while(i<10)
+{
+printf("Noting");
+echo;
+
+}

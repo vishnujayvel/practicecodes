@@ -1,0 +1,9 @@
+void display()
+{
+	printf("hellow");
+}
+int a=20,b=10;
+float c=a+b;
+while(i<10)
+{
+ }

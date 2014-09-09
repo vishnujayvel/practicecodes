@@ -2,26 +2,27 @@
 using namespace std;
 int main(int argc, char const *argv[])
 {
-       int a[10]={0,0,1,0,0,0,1,1,1};
+       int arr[]={1,0,1,0,0,0,1,1,1};
+       int n=sizeof arr/sizeof (int);
        
-       int pos=-1;
        //sort
-       for (int i = 0; i < 9; i++)
-       {
-               if(a[i]==1)
-                       pos=i;
-
-               if(a[i]==0 && pos!=-1){
-                       //swap
-                       int temp=a[i];
-                       a[i]=a[pos];
-                       a[pos]=temp;
-
-                       i=pos;
-               }
-
-       }  
-        for(int i=0;i<9;i++)
-               cout<<"\n"<<a[i];
+      int left=0;
+      int right=n-1;
+      while(left<right){
+		  while(arr[left]==0&&left<right)
+		      left++;
+		   while(arr[right]==1&&right>left)
+					right--;
+		   if(left<right){
+			   arr[left]=0;
+			   arr[right]=1;
+			   left++;
+			   right--;
+		   }
+	   }
+		          
+			
+        for(int i=0;i<n;i++)
+               cout<<"\n"<<arr[i];
 	      
 }

@@ -1,0 +1,7 @@
+void main()
+{
+  int a,b;
+  if(a>b)
+    printf("%s",a);
+ return 0;
+} 

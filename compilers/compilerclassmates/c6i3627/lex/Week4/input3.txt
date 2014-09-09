@@ -1,0 +1,8 @@
+int var=2;
+while(var<5)
+{
+command;
+command;
+j++;
+var++;
+}

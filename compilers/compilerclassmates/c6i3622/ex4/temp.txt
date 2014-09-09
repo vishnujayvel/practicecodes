@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main()
+{
+//comment1
+int i;
+/*
+comment2
+comment3
+*/
+
+stmt;
+ return 1;
+}

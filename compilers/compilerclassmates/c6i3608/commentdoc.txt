@@ -1,0 +1,6 @@
+#include<stdio.h>
+void main()
+{
+/* This is a basic program */
+printf("Hello");
+}

@@ -1,0 +1,11 @@
+switch(id)
+{
+case 1: 
+	p=0;
+	break;
+case 2:
+	p=1;
+	break;
+default:
+ 	p=2;
+}

@@ -1,0 +1,8 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+i=0;//initialisation
+/*Body of the program
+is just the initialisation*/
+}

@@ -1,0 +1,15 @@
+
+ <?xml version="1.0"?> 
+ <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+ <wml> 
+ <card id="one" > 
+ <p> Welcome to online banking services </p>
+ <p> We offer the following services </p>
+ <p> New user <do type="Create Account"> 
+ <go href="signup.wml"/>
+ </do> </p>
+ <p> Existing user <do type="Sign in"> 
+ <go href="login.wml"/>
+ </do> </p>
+ </card> 
+ </wml>

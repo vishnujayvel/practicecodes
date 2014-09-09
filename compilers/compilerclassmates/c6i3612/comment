@@ -1,0 +1,7 @@
+#include<stdio.h> //preprocessor
+int main()
+{
+ int i; /*this is the comment to b removed
+with two lines */
+return 0;
+} 

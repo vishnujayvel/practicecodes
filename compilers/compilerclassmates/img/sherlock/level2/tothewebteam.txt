@@ -1,0 +1,32 @@
+create a 5x2 (rows x columns)
+
+answers 
+
+for ans1.png = scorch
+    ans2.png = fillet
+    ans3.png = 633282941
+    ans4.png = cakeordeath
+
+main answer = churchofillumination
+
+once user types correct answer for the clueX.png (where X = 1,2,3,4) then the pic should change
+to ansX.png(where X = 1,2,3,4 correspondingly).
+
+once user types churchofillumination in the main answerbox, goto next level.
+
+the order of the pics and the answer boxes is like this:
+
+		col1		col2
+	row1	clue1.png 	clue2.png
+
+	row2	answerbox	answerbox
+	
+	row3	clue3.png	clue4.png
+
+	row4	answerbox	answerbox
+
+	row5 - 		mainanswerbox
+
+
+
+p.s can u make it look like the mainanswerbox is not visible until all the 4 ansX.pngs (x = 1,2,3,4) are visible.

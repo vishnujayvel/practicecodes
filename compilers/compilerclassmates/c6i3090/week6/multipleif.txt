@@ -1,0 +1,4 @@
+if(a>0&&b>0&&c>0)
+{
+	printf("3 conditions satisfied");
+}

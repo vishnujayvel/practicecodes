@@ -1,0 +1,1 @@
+#define area(a) a*a

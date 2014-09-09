@@ -1,0 +1,14 @@
+switch ( varname )
+{
+case 1:random statements;
+random statements;
+break;
+case 2:random statements;
+random statements;
+break;
+case 3:
+state;
+stare;
+break;
+default:random statements;
+}

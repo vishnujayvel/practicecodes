@@ -1,0 +1,7 @@
+this is not a comment;
+
+/*this is a multiline comment;
+93256&@*!#$^gkhsrekgh
+This is the last line */
+hello world
+//This is a single line comment.

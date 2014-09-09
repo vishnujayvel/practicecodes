@@ -1,0 +1,8 @@
+if( a || b )
+{
+printf("hello\n");
+}
+else
+{
+printf("end\n");
+}

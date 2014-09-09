@@ -1,0 +1,5 @@
+while(1)
+{
+	printf("Infinite Loop");
+	printf("Hello");
+}

@@ -1,0 +1,8 @@
+switch(i)
+{
+  case 1:
+		printf("Hello");
+		break;
+ case 2:   printf("2"); break;
+ default: printf("Done"):
+}

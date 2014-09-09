@@ -1,0 +1,7 @@
+switch(val)
+{
+case 1:a=100;break;
+case 2:c=1;brak;
+
+}
+

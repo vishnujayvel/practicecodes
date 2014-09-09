@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/c6i3074/172'
+let g:netrw_dirhist_2='/home/c6i3074'
+let g:netrw_dirhist_3='/home'
+let g:netrw_dirhist_4='/'

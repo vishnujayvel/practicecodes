@@ -1,0 +1,5 @@
+void ip()
+{
+ printf("Hello");
+ int a;
+}

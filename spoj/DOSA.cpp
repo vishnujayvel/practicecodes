@@ -1,49 +1,76 @@
-
-#include <vector>
-#include <list>
-#include <map>
-#include <set>
-#include <deque>
-#include <queue>
-#include <stack>
-#include <bitset>
-#include <algorithm>
-#include <functional>
-#include <numeric>
-#include <utility>
-#include <sstream>
 #include <iostream>
-#include <iomanip>
-#include <cstdio>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
 #include <cstring>
-#include <climits>
+#include <vector>
 using namespace std;
-#define REP(i,n) for(int i=0; i<n; i++)
-#define FOR(i,st,end) for(int i=st;i<end;i++)
-#define db(x) cout << (#x) << " = " << x << endl;
-#define mp make_pair
-#define pb push_back
-int arr[1000005];
-int main(){
-	int n,max1;
-	scanf("%d",&n);
-	REP(i,n){
-		scanf("%d",&arr[i]);
+
+int CeilIndex(int A[], int l, int r, int key) {
+    int m;
+ 
+    while( r - l > 1 ) {
+        m = l + (r - l)/2;
+        (A[m] > key ? r : l) = m; // ternary expression returns an l-value
+    }
+ 
+    return r;
+}
+ 
+int LongestIncreasingSubsequenceLength(vector<int> A, int size) {
+    // Add boundary case, when array size is one
+ 
+    int *tailTable   = new int[size];
+    int len; // always points empty slot
+ 
+    memset(tailTable, 0, sizeof(tailTable[0])*size);
+ 
+    tailTable[0] = A[0];
+    len = 1;
+    for( int i = 1; i < size; i++ ) {
+        if( A[i] < tailTable[0]) {
+            // new smallest value
+            tailTable[0] = A[i];
+			//cout << "I: " << i << '\n';
+		}
+        else if( A[i] >= tailTable[len-1])
+            // A[i] wants to extend largest subsequence
+            tailTable[len++] = A[i];
+        else
+            // A[i] wants to be current end candidate of an existing subsequence
+            // It will replace ceil value in tailTable
+            tailTable[CeilIndex(tailTable, -1, len-1, A[i])] = A[i];
+    }
+	/*for(int i = 0; i < len; i++)
+		cout << tailTable[i] << ' ';
+	cout << '\n';*/
+    delete[] tailTable;
+ 
+    return len;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	
+	vector<int> a(n);
+	for(int i = 0; i < n; i++) {
+		cin >> a[i];
 		
+		a[i] = a[i] - i;
+		//cout<<a[i]<<endl;
 	}
-	int lis[n];
-	for(int i=0;i<n;i++)
-	    lis[i]=1;
-   for(int i=1;i<n;i++){
-	    max1=1;
-   	for(int j=0;j<i;j++){
-		if(arr[j]<arr[i])
-		   max1=max(max1,1+lis[j]);
-   	}
-   }
-   
-          printf("%d\n",n-max1);
- }         
+	vector<int> x;
+	for(vector<int>::iterator it = a.begin(); it != a.end(); it++) {
+		if(*it > 0){
+			x.push_back(*it);
+		// cout<<"pushing "<<*it<<endl;
+		}
+			
+	}
+	int n1 = x.size();	
+	/*cout << "N: " << n<<endl;
+	for(int i = 0; i < n; i++) {
+		cout << x[i] << ' ';
+	}*/
+	cout << '\n';
+	cout << n-LongestIncreasingSubsequenceLength(x, n1) << '\n';
+	
+}

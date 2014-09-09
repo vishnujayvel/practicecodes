@@ -1,0 +1,13 @@
+#define key 257
+#define ob 258
+#define op 259
+#define vb 260
+#define cb 261
+#define nu 262
+#define co 263
+#define cc 264
+#define cn 265
+#define tt 266
+#define sp 267
+#define sc 268
+#define dec 269

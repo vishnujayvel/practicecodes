@@ -1,0 +1,10 @@
+switch(c)
+{
+  case 'a':  printf("1");
+           break;
+        
+  case 'b': printf("2");
+            break;
+ default:   printf("default");
+           
+}

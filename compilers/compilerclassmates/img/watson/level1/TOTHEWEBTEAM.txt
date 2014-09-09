@@ -1,0 +1,26 @@
+l2tutor1 and 2.png explain what i have in mind
+
+level2anatomy.png = background picture for that level
+
+
+sympX.png (x = 1,2,3,4 are the pics which should open like how photos open in facebook i.e. w/o
+redirecting to another web page)
+
+hint.png is the image that should be the link for each of the 4 sympX.png
+
+you can use the same image right?
+
+also, if u notice tutor2.png, the hint.png image is placed inside the body but since i did not use
+transparent PNGs, you can place them near the body part so that the white portion of hint.jpg blends with the background image.
+
+
+
+
+----------
+sherlocks.png and watson.png = the two icons/images that the players will click to go to registering as either watson or sherlock.. note that this level's content should only be visible to watson.
+
+
+
+-------
+last thing - sherlock.png the cover photo, can u please put that up on the kurukshetra main website?
+just a small request, so please let me know about everything.

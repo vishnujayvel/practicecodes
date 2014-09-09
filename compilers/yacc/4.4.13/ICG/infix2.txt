@@ -1,0 +1,127 @@
+Program:
+
+// Lex file: imadv.l
+
+ALPHA [A-Za-z]
+DIGIT [0-9]
+
+%%
+
+{ALPHA}({ALPHA}|{DIGIT})*        return ID;
+{DIGIT}+ {yylval=atoi(yytext);       return NUM;}
+[\n\t]                                             yyterminate();
+.                                                   return yytext[0];
+
+%%
+
+
+// Yacc file: imadv.y
+
+%token ID NUM
+%right '='
+%left '+' '-'
+%left '*' '/'
+%left UMINUS
+%%
+
+S    :    ID{push();} '='{push();} E{codegen_assign();}
+      ;
+E    :    E '+'{push();} T{codegen();}
+      |    E '-'{push();} T{codegen();}
+      |    T
+      ;
+T    :    T '*'{push();} F{codegen();}
+      |    T '/'{push();} F{codegen();}
+      |    F
+      ;
+F    :    '(' E ')'
+      |    '-'{push();} F{codegen_umin();} %prec UMINUS
+      |    ID{push();}
+      |    NUM{push();}
+      ;
+
+%%
+
+#include "lex.yy.c"
+#include<ctype.h>
+#include<string.h>
+char st[100][25];
+int top=0,ptr=0;
+int tint=0; int tintar[200];
+
+main()
+{
+    printf("Enter the expression : ");
+    yyparse();
+}
+
+push()
+{
+  strcpy(st[++top],yytext);
+  ptr++;
+}
+
+codegen()
+{
+    printf("t%d = %s",tint,st[top-2]);
+    printnum(2);
+    printf(" %s %s",st[top-1],st[top]);
+    printnum(0);
+    printf("\n");
+    top-=2;ptr-=2;
+    strcpy(st[top],"t");
+    tintar[ptr]=tint;
+    tint++;
+}
+
+codegen_umin()
+{
+    printf("t%d = -%s\n",tint,st[top]);
+    printnum(0);
+    top--;ptr--;
+    strcpy(st[top],"t");
+    tintar[ptr]=tint;
+    tint++;
+}
+codegen_assign()
+{
+    printf("%s = ",st[top-2]);
+    printnum(2);
+    printf("%s",st[top]);
+    printnum(0);
+    printf("\n");
+    top-=2;ptr-=2;
+}
+printnum(int n)
+{
+    if( strcmp(st[top-n],"t")==0)
+    {
+         printf("%d",tintar[ptr-n]);
+    }
+}
+
+Output:
+
+nn@linuxmint ~ $ lex imadv.l
+nn@linuxmint ~ $ yacc imadv.y
+nn@linuxmint ~ $ gcc y.tab.c -ll -ly
+nn@linuxmint ~ $ ./a.out
+Enter the expression : a=b*c+d*c-c/5+2*8-5+5*5/8-8*9/8+8*7
+t0 = b * c
+t1 = d * c
+t2 = t0 + t1
+t3 = c / 5
+t4 = t2 - t3
+t5 = 2 * 8
+t6 = t4 + t5
+t7 = t6 - 5
+t8 = 5 * 5
+t9 = t8 / 8
+t10 = t7 + t9
+t11 = 8 * 9
+t12 = t11 / 8
+t13 = t10 - t12
+t14 = 8 * 7
+t15 = t13 + t14
+a = t15
+nn@linuxmint ~ $ 

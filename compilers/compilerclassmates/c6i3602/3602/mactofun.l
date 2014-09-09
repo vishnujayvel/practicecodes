@@ -1,0 +1,72 @@
+%{
+	int i=0,k=0;
+        char p,func_name[50],var_name[50],inp[50],ans[50],init[]="int",ret[]="return";;
+%}
+%%
+(#define) {
+                p=input();
+                i=0;
+                while(p!='(')
+                {
+                        func_name[i++]=p;
+                        p=input();
+                }
+                func_name[i]='\0';
+                p=input();
+                i=0;
+                while(p!=')')
+                {
+                        var_name[i++]=p;
+                        p=input();
+                }
+                var_name[i]='\0';
+                i=0;
+                while(init[i]!='\0')
+                {
+                        ans[k++]=init[i++];
+                }
+                ans[k++]=' ';
+                i=0;
+                while(func_name[i]!='\0')
+                {
+                        ans[k++]=func_name[i++];
+                }
+                ans[k++]='(';
+                i=0;
+                while(var_name[i]!='\0')
+                {
+                        ans[k++]=var_name[i++];
+                }
+                ans[k++]=')';
+                ans[k++]='\n';
+                ans[k++]='{';
+                p=input();
+                i=0;
+                while(p!=';')
+                {
+                        inp[i++]=p;
+                        p=input();
+                }
+                inp[i]='\0';
+                i=0;
+                while(ret[i]!='\0')
+                {
+                        ans[k++]=ret[i++];
+                }
+                i=0;
+                while(inp[i]!='\0')
+                {
+                        ans[k++]=inp[i++];
+                        }
+                ans[k++]='}';
+        }
+
+%%
+main()
+{
+yylex();
+if(ans[k-1]!='}')
+        ans[k++]='}';
+printf("%s",ans);
+}
+

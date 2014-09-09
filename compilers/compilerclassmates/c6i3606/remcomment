@@ -1,0 +1,12 @@
+#include<stdio.h>
+/* this is comment */
+main()
+{
+	for(i=0;i<n;i++)
+	{
+		/* for loop
+			some comment */
+		printf("*");
+	}
+	//end of for
+}

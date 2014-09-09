@@ -1,0 +1,12 @@
+int main()
+{
+int a,b,c;
+a=0;
+b=2;
+c=a+b;
+if(a!=0)   { a+b+c+d  }
+
+}
+int fun2(){
+        printf("hello");
+}

@@ -1,0 +1,100 @@
+   0  $accept : program $end
+
+   1  program : program expr '\n'
+   2          |
+
+   3  expr : INTEGER
+   4       | expr '+' expr
+   5       | expr '-' expr
+
+state 0
+	$accept : . program $end  (0)
+	program : .  (2)
+
+	.  reduce 2
+
+	program  goto 1
+
+
+state 1
+	$accept : program . $end  (0)
+	program : program . expr '\n'  (1)
+
+	$end  accept
+	INTEGER  shift 2
+	.  error
+
+	expr  goto 3
+
+
+state 2
+	expr : INTEGER .  (3)
+
+	.  reduce 3
+
+
+state 3
+	program : program expr . '\n'  (1)
+	expr : expr . '+' expr  (4)
+	expr : expr . '-' expr  (5)
+
+	'\n'  shift 4
+	'+'  shift 5
+	'-'  shift 6
+	.  error
+
+
+state 4
+	program : program expr '\n' .  (1)
+
+	.  reduce 1
+
+
+state 5
+	expr : expr '+' . expr  (4)
+
+	INTEGER  shift 2
+	.  error
+
+	expr  goto 7
+
+
+state 6
+	expr : expr '-' . expr  (5)
+
+	INTEGER  shift 2
+	.  error
+
+	expr  goto 8
+
+
+7: shift/reduce conflict (shift 5, reduce 4) on '+'
+7: shift/reduce conflict (shift 6, reduce 4) on '-'
+state 7
+	expr : expr . '+' expr  (4)
+	expr : expr '+' expr .  (4)
+	expr : expr . '-' expr  (5)
+
+	'+'  shift 5
+	'-'  shift 6
+	'\n'  reduce 4
+
+
+8: shift/reduce conflict (shift 5, reduce 5) on '+'
+8: shift/reduce conflict (shift 6, reduce 5) on '-'
+state 8
+	expr : expr . '+' expr  (4)
+	expr : expr . '-' expr  (5)
+	expr : expr '-' expr .  (5)
+
+	'+'  shift 5
+	'-'  shift 6
+	'\n'  reduce 5
+
+
+State 7 contains 2 shift/reduce conflicts.
+State 8 contains 2 shift/reduce conflicts.
+
+
+6 terminals, 3 nonterminals
+6 grammar rules, 9 states

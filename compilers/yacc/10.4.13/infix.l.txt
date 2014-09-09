@@ -1,0 +1,11 @@
+%{
+%}
+alpha [a-zA-Z]
+digit   [0-9]
+%%
+
+{digit}+        {yylval=atoi(yytext);return ID;}
+"("|")"         {;}
+{alpha}+        {return ID;}
+[-+*/]          {return yytext[0];}
+\n              yyterminate();

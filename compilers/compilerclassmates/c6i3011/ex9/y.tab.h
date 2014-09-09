@@ -1,0 +1,14 @@
+#define KEY 257
+#define INCR 258
+#define OPER 259
+#define RELOP 260
+#define LOGIC 261
+#define ID 262
+#define NUM 263
+#define OB 264
+#define CB 265
+#define OCB 266
+#define CCB 267
+#define SC 268
+#define EQ 269
+#define OTHER 270

@@ -1,0 +1,11 @@
+switch(ch)
+{
+        case 'a':
+                printf("a");
+                break;
+        case 'b':
+                printf("b");
+                break;
+        default:
+                printf("exit");
+}

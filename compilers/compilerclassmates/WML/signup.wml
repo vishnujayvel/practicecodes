@@ -1,0 +1,18 @@
+
+ <?xml version="1.0"?> 
+ <!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+ <wml> 
+ <card id="one" > 
+ <p> Create new account</p>
+ <p> Enter details </p>
+ <p> Name:<input type="text" name="nam"/> </p>
+ <p> Age:<input type="text" name="age"/> </p>
+ <p> Choose Pin:<input type="password" name="pwd"/> </p>
+ <p> Enter security question:<input type="text" name="ques"/> </p>
+ <p> Enter answer<input type="text" name="ans"/> </p>
+
+ <do type="signup">
+ <go href="page2.wml"/>
+ </do> 
+ </card> 
+ </wml>

@@ -1,0 +1,5 @@
+switch(i)
+{
+case : break;
+default: 
+}

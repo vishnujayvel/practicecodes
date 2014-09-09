@@ -1,0 +1,9 @@
+
+#define num(a) {\
+	a=a*a;\
+}
+main()
+{
+num(5);
+}
+

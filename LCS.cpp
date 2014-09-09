@@ -9,8 +9,8 @@ int max(int a,int b){
 	  return b;
 }
 int main(){
-	char str1[]="ananaaa";
-	char str2[]= "ananaaa";
+	char str1[]="abc";
+	char str2[]= "bac";
 	int len1=strlen(str1);
 	int len2=strlen(str2);
 	int lcs[len1][len2];

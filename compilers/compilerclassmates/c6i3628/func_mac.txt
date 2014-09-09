@@ -1,0 +1,4 @@
+int sqr(a)
+{
+return a*a;
+}
